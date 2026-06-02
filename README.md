@@ -57,8 +57,7 @@ docker run -d \
   -p 8080:8080 \
   wstunnel-server:latest \
   server ws://0.0.0.0:8080 \
-  --restrict-to 127.0.0.1:22 \
-  --http-upgrade-credentials myuser:mypassword
+  --restrict-to 127.0.0.1:22
 ```
 
 ---
@@ -109,8 +108,6 @@ services:
       - "ws://0.0.0.0:8080"
       - --restrict-to
       - "127.0.0.1:22"
-      - --http-upgrade-credentials
-      - "myuser:mypassword"
 ```
 
 > Port 8080 should **not** be exposed directly to the internet. nginx sits in front and handles TLS termination.
@@ -185,7 +182,7 @@ ssh user@localhost -p 2222
 
 ### With credentials
 
-If `--http-upgrade-credentials` is enabled on the server:
+If basic auth is enabled on nginx:
 
 ```bash
 wstunnel client \

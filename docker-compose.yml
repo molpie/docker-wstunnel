@@ -1,0 +1,28 @@
+services:
+  wstunnel:
+    image: molpie/docker-wstunnel:latest
+    container_name: wstunnel
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETUID        # sshd privilege separation
+      - SETGID        # sshd privilege separation
+      - SYS_CHROOT    # sshd privsep chroot /var/empty
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /run/sshd
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./config/authorized_keys:/home/jumpuser/.ssh/authorized_keys:ro"
+      - "./config/ssh_host_keys/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key:ro"
+      - "./config/ssh_host_keys/ssh_host_ecdsa_key:/etc/ssh/ssh_host_ecdsa_key:ro"
+      - "./config/ssh_host_keys/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key:ro"
+    command:
+      - server
+      - "ws://0.0.0.0:8080"
+      - --restrict-to
+      - "127.0.0.1:2222"

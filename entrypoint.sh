@@ -12,7 +12,7 @@ for keytype in rsa ecdsa ed25519; do
 done
 
 echo "INFO: Starting sshd on port 2222..."
-/usr/sbin/sshd -E /dev/stderr
+/usr/sbin/sshd -E /dev/stderr -o PidFile=/run/sshd/sshd.pid
 
 echo "INFO: Starting wstunnel..."
 exec wstunnel "$@"

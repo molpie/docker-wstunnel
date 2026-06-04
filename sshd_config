@@ -28,3 +28,7 @@ PrintMotd no
 ClientAliveInterval 30
 ClientAliveCountMax 3
 LoginGraceTime 20
+
+# sshd_config
+SyslogFacility AUTH
+LogLevel INFO

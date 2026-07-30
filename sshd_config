@@ -8,7 +8,8 @@ AuthorizedKeysFile /home/jumpuser/.ssh/authorized_keys
 # ProxyJump requires AllowTcpForwarding yes (uses ssh -W internally)
 AllowTcpForwarding yes
 # Restrict forwarding destinations to known internal hosts only
-PermitOpen 10.0.0.10:22 10.0.0.11:22
+# PermitOpen 10.0.0.10:22 10.0.0.11:22
+PermitOpen 192.168.1.15:22
 
 PermitTTY no
 X11Forwarding no

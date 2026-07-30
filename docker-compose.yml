@@ -9,7 +9,7 @@ services:
       - SETGID        # sshd privilege separation
       - SYS_CHROOT    # sshd privsep chroot /var/empty
     security_opt:
-      - no-new-privileges:true
+      - no-new-privileges=true
     read_only: true
     tmpfs:
       - /tmp
